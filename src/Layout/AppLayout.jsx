@@ -10,25 +10,29 @@ const AppLayout = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);  
 
+
   
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+    
     if (token) {
       const validateTokenAndFetchUser = async () => {
         try {
           const response = await axios.get("https://hirrd-backend.vercel.app/api/v1/users/currentUser", {
             headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-            withCredentials: true,
-          });
+          },{
+            withCredentials: true 
+        });
 
           if (response) {
             dispatch(login({ userData: response.data })); 
           }
-        } catch (error) {
+        } 
+        catch (error) {
           console.error("Error while validating token:", error);
           dispatch(logout()); 
-        } finally {
+        } 
+        finally {
           setLoading(false); 
         }
       };

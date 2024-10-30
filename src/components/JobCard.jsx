@@ -23,8 +23,10 @@ const JobCard = ({ job, isMyJob=false, savedInit, onJobSaved=()=>{}, onJobDelete
       setLoading(true)
          try {
             const response = await axios.delete('https://hirrd-backend.vercel.app/api/v1/job/unSaveJob', {
-               data: { jobID }
-            })
+               data: { jobID }, 
+            }, {
+               withCredentials: true // Include credentials with the request
+           })
    
             if (response.status === 200) {
                setSaved(false)
@@ -43,8 +45,10 @@ const JobCard = ({ job, isMyJob=false, savedInit, onJobSaved=()=>{}, onJobDelete
         try {
           const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/job/createSavedJob', {
              userID, 
-             jobID
-          })
+             jobID,
+          }, {
+            withCredentials: true 
+        })
           
           if (response.data.success) {
              setSaved(true)
@@ -64,7 +68,9 @@ const JobCard = ({ job, isMyJob=false, savedInit, onJobSaved=()=>{}, onJobDelete
     const handleDeleteJob = async () => {
         setLoading(true)
         try {
-          const response = await axios.delete(`https://hirrd-backend.vercel.app/api/v1/job/deleteJob?jobID=${jobID}`)
+          const response = await axios.delete(`https://hirrd-backend.vercel.app/api/v1/job/deleteJob?jobID=${jobID}`, {
+            withCredentials: true 
+        })
           if (response) {
              onJobDeleted(jobID);
           }

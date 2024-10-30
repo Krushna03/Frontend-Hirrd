@@ -16,7 +16,9 @@ const SavedJob = () => {
      try {
       const fetchedJobs = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getSavedJobs', {
          params: { userID }
-      })
+      },{
+        withCredentials: true 
+    })
  
       if (fetchedJobs) {
         setSavedJobs(fetchedJobs.data?.data)

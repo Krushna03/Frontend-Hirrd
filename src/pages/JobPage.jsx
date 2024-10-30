@@ -58,7 +58,9 @@ const JobPage = () => {
     const fetchJob = async () => {
       setLoading(true)
       try {
-        const job = await axios.get(`https://hirrd-backend.vercel.app/api/v1/job/getJobById/${jobId}`)
+        const job = await axios.get(`https://hirrd-backend.vercel.app/api/v1/job/getJobById/${jobId}`,{
+          withCredentials: true 
+      })
         if (job) {
           setJob(job.data?.data)
         }

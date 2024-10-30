@@ -16,7 +16,9 @@ const CreatedApplications = () => {
     const getAppliedjob = async () =>{
       setLoading(true)
         try {
-           const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/application/getAppliedJobs?userID=${userID}`)
+           const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/application/getAppliedJobs?userID=${userID}`, {
+            withCredentials: true 
+        })
            
            if (response) {
               setApplications(response?.data?.data) 

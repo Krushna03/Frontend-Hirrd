@@ -54,7 +54,9 @@ export function ApplyJobDrawer({ user, job, fetchJob, applied = false }) {
       formData.append('jobID', jobID)  
       formData.append('userID', userID)
 
-      const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/application/createApplication',formData)
+      const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/application/createApplication',formData, {
+        withCredentials: true 
+    })
       if (response) {
         console.log(response);
         toast.success("Job created successfully!")

@@ -18,7 +18,9 @@ const CreatedJobs = () => {
   const getMyJobs = async () => {
     setLoading(true)
      try {
-      const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/job/getMyJobs?userID=${userID}`)
+      const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/job/getMyJobs?userID=${userID}`,{
+        withCredentials: true 
+    })
  
       if (response) {
          setCreatedJobs(response.data?.data)

@@ -21,7 +21,9 @@ export default function RegistrationCard({ setShowRegister, setShowSignin }) {
 
    const submit = async (data) => {
     try {
-      const registered = await axios.post('https://hirrd-backend.vercel.app/api/v1/users/registeration', data);
+      const registered = await axios.post('https://hirrd-backend.vercel.app/api/v1/users/registeration', data,{
+        withCredentials: true 
+    });
       console.log(registered);
 
       if (registered) {

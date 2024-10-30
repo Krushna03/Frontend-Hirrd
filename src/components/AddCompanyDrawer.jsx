@@ -28,7 +28,9 @@ const AddCompanyDrawer = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
-      })
+      }, {
+        withCredentials: true 
+    })
 
       if (response) {
         toast.success("Company added successfully!")

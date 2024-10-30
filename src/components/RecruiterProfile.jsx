@@ -37,7 +37,10 @@ const RecruiterProfile = () => {
   useEffect(() => {
     const recruiterDetails = async () => {
       try {
-        const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/users/getRecruiterDetails`, {params : {userID}})
+        const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/users/getRecruiterDetails`, {params : {userID}}, {
+          withCredentials: true 
+      })
+      
         if (response) {
           setrecruiterDetails(response.data?.data)
           }
