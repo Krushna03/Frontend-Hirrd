@@ -37,7 +37,7 @@ const RecruiterProfile = () => {
   useEffect(() => {
     const recruiterDetails = async () => {
       try {
-        const response = await axios.get(`/api/v1/users/getRecruiterDetails`, {params : {userID}})
+        const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/users/getRecruiterDetails`, {params : {userID}})
         if (response) {
           setrecruiterDetails(response.data?.data)
           }
@@ -53,7 +53,7 @@ const RecruiterProfile = () => {
   const logoutHandler = async () => {
     setLoading(true)
     try {
-      const response = await axios.post(`/api/v1/users/logout`)
+      const response = await axios.post(`https://hirrd-backend.vercel.app/api/v1/users/logout`)
       if (response.status === 200) {
         dispatch(logout())
         localStorage.removeItem('token')

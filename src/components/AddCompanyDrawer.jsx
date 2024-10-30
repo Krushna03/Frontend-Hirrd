@@ -24,7 +24,7 @@ const AddCompanyDrawer = () => {
     formData.append("logo_url", data.logo[0])
 
      try {
-      const response = await axios.post('api/v1/company/newCompany', formData, {
+      const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/company/newCompany', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }

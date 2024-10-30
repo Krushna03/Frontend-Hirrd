@@ -24,7 +24,7 @@ const JobListing = () => {
 
    const getCompanies = async () => {
      try {
-      const response = await axios.get("/api/v1/company/getCompanies")
+      const response = await axios.get("https://hirrd-backend.vercel.app/api/v1/company/getCompanies")
 
       if (response) {
         setCompanies(response.data?.data)
@@ -38,7 +38,7 @@ const JobListing = () => {
    const handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.get('/api/v1/job/getJobsBySearch', {
+      const response = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getJobsBySearch', {
         params: { title, location, company_Name },
       });
 
@@ -67,7 +67,7 @@ const JobListing = () => {
     const initializeData = async () => {
       setJobLoading(true);
       try {
-        const savedResponse = await axios.get('/api/v1/job/getSavedJobs', {
+        const savedResponse = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getSavedJobs', {
           params: { userID }
         });
         if (savedResponse.data.data) {
@@ -75,7 +75,7 @@ const JobListing = () => {
         }
         
         await getCompanies();
-        const jobsResponse = await axios.get('/api/v1/job/getJobs');
+        const jobsResponse = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getJobs');
         
         if (jobsResponse?.data?.data) {
           const jobsWithSavedStatus = jobsResponse.data.data.map(job => ({

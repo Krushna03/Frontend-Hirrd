@@ -50,7 +50,7 @@ const CandidateProfile = () => {
   useEffect(() => {
     const userDetails = async () => {
       try {
-        const response = await axios.get(`/api/v1/users/getUserDeatils`, {params : {userID}})
+        const response = await axios.get(`https://hirrd-backend.vercel.app/api/v1/users/getUserDeatils`, {params : {userID}})
         if (response) {
           setuserDetails(response.data?.data)
           }

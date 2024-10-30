@@ -21,7 +21,7 @@ export default function SignIn({ setShowRegister, setShowSignin }) {
 
   const signIn = async (data) => {
     try {
-      const signin = await axios.post("/api/v1/users/signIn", data)
+      const signin = await axios.post("https://hirrd-backend.vercel.app/api/v1/users/signIn", data)
   
       if (signin) {
         dispatch(login({ userData : signin.data }))

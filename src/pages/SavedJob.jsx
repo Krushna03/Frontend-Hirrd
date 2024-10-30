@@ -14,7 +14,7 @@ const SavedJob = () => {
   const getSavedJobs = async () => {
     setLoading(true)
      try {
-      const fetchedJobs = await axios.get('/api/v1/job/getSavedJobs', {
+      const fetchedJobs = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getSavedJobs', {
          params: { userID }
       })
  

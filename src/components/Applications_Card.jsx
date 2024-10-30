@@ -27,7 +27,7 @@ const ApplicationCard = ({ application, job }) => {
     const handleStatusChange = async (status) => {
       setLoading(true)
       try {
-        const response = await axios.put(`/api/v1/application/changeApplicationStatus?jobID=${jobID}&status=${status}`);
+        const response = await axios.put(`https://hirrd-backend.vercel.app/api/v1/application/changeApplicationStatus?jobID=${jobID}&status=${status}`);
         
         if (response) {
           console.log(response.data?.data?.status);
