@@ -10,27 +10,38 @@ const ProtectedRoute = ({ children }) => {
   
   // const [user, setUser] = useState()
   const { pathname } = useLocation()
-  // const dispatch = useDispatch(); 
+  const dispatch = useDispatch(); 
   const authStatus = useSelector((state) => state.auth.status)
   const userData = useSelector((state) => state.auth.userData)
 
-  // useEffect(() => {
-  //   const getCurrentUser = async () => {
-  //     try {
-  //       const response = await axios.get("/api/v1/users/currentUser");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const getCurrentUser = async () => {
+        try {
+          const response = await axios.get("/api/v1/users/currentUser", {
+          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+        },{
+          withCredentials: true 
+        });
         
-  //       if (response) {
-  //         setUser(response.data);
-  //         dispatch(login({ userData: response.data }))
-  //       }
-  //     } 
-  //     catch (error) {
-  //       console.error("Error while getting user:", error);
-  //       dispatch(logout());
-  //     }
-  //   };
-  //   getCurrentUser()
-  // }, [])
+        if (response) {
+          setUser(response.data);
+          dispatch(login({ userData: response.data }))
+        }
+      } 
+      catch (error) {
+        console.error("Error while getting user:", error);
+        dispatch(logout());
+      }
+    };
+    getCurrentUser()
+  }
+  else {
+     console.log("No token is available");
+  }
+  }, [dispatch])
 
    if (!userData && !authStatus) {
       return <Navigate to="/?sign-in=true" />
