@@ -29,13 +29,14 @@ export default function User() {
     setLoading(true)
     try {
       const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/users/logout', {
-        withCredentials: true 
+        withCredentials: true,
+        credentials: 'include' 
     })
 
       if (response) {
+        dispatch(logout())
         localStorage.removeItem('token')
         navigate('/')
-        dispatch(logout())
       }
     } catch (error) {
       console.log("logout error", error);
