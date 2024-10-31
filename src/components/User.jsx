@@ -30,7 +30,6 @@ export default function User() {
     try {
       const response = await axios.post('https://hirrd-backend.vercel.app/api/v1/users/logout', {
         withCredentials: true,
-        credentials: 'include' 
     })
 
       if (response.status === 200) {
