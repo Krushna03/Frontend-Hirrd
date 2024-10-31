@@ -13,15 +13,14 @@ const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch(); 
   const authStatus = useSelector((state) => state.auth.status)
   const userData = useSelector((state) => state.auth.userData)
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
     if (token) {
       const getCurrentUser = async () => {
         try {
           const response = await axios.get("/api/v1/users/currentUser", {
-          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+          headers: { Authorization: `Bearer ${token}` },
         },{
           withCredentials: true 
         });
