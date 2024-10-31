@@ -15,7 +15,8 @@ const ProtectedRoute = ({ children }) => {
   const userData = useSelector((state) => state.auth.userData)
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token);
 
     if (token) {
       const getCurrentUser = async () => {
