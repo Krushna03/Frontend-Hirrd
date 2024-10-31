@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
     if (token) {
       const getCurrentUser = async () => {
         try {
-          const response = await axios.get("/api/v1/users/currentUser", {
+          const response = await axios.get("https://hirrd-backend.vercel.app/api/v1/users/currentUser", {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },
         },{
           withCredentials: true 
