@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children }) => {
   
-  // const [user, setUser] = useState()
+  const [user, setUser] = useState()
   const { pathname } = useLocation()
   const dispatch = useDispatch(); 
   const authStatus = useSelector((state) => state.auth.status)
@@ -32,7 +32,7 @@ const ProtectedRoute = ({ children }) => {
         }
       } 
       catch (error) {
-        console.error("Error while getting user:", error);
+        console.error("Error while getting user:", error.response ? error.response.data : error.message);
         dispatch(logout());
       }
     }
@@ -43,15 +43,15 @@ const ProtectedRoute = ({ children }) => {
   }
   }, [dispatch])
 
-   if (!userData && !authStatus) {
+   if (!user && !authStatus) {
       return <Navigate to="/?sign-in=true" />
    }
 
-  if(userData !== undefined && !userData?.data?.role  && pathname !== '/onboarding') {
+  if(user !== undefined && !userData?.data?.role  && pathname !== '/onboarding') {
     return <Navigate to='/onboarding' />
   }
 
-  if (userData && userData?.data?.role && pathname === '/onboarding') {
+  if (user && userData?.data?.role && pathname === '/onboarding') {
     return <Navigate to="/" />;
   }
 
