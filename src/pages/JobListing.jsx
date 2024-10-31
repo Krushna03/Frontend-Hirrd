@@ -71,11 +71,12 @@ const JobListing = () => {
     const initializeData = async () => {
       setJobLoading(true);
       try {
-        const savedResponse = await axios.get('https://hirrd-backend.vercel.app/api/v1/job/getSavedJobs', {
-          params: { userID }
-        },{
-          withCredentials: true 
-      });
+        const savedResponse = await axios.get(
+          `https://hirrd-backend.vercel.app/api/v1/job/getSavedJobs?userID=${userID}`, 
+          { 
+            withCredentials: true 
+          }
+        );
 
         if (savedResponse.data.data) {
           setSavedJob(savedResponse.data.data);
