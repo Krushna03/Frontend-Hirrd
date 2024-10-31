@@ -33,7 +33,7 @@ export default function User() {
         credentials: 'include' 
     })
 
-      if (response) {
+      if (response.statusCode === 200) {
         dispatch(logout())
         localStorage.removeItem('token')
         navigate('/')
